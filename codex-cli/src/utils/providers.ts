@@ -57,4 +57,9 @@ export const providers: Record<
     baseURL: "http://localhost:8000",
     envKey: "LANGCHAIN_API_KEY",
   },
+  browser: {
+    name: "BrowserUse",
+    baseURL: "",
+    envKey: "BROWSER_USE_API_KEY",
+  },
 };

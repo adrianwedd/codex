@@ -29,3 +29,13 @@ LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 ```
 
 When these environment variables are present, Codex CLI will wrap OpenAI calls with LangSmith tracing so interactions appear on your LangSmith account.
+
+## Quick launch script
+
+For convenience, a helper script checks for all required tools and variables before starting Codex with this configuration:
+
+```bash
+scripts/launch_ollama_langsmith.sh "your prompt here"
+```
+
+The script verifies the Ollama server, loads the environment variables from `docs/example-configs/ollama-langsmith.env` if present, and then launches the Codex CLI using the example configuration.

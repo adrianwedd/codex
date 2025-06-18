@@ -75,7 +75,7 @@ const cli = meow(
 
     -h, --help                      Show usage and exit
     -m, --model <model>             Model to use for completions (default: codex-mini-latest)
-    -p, --provider <provider>       Provider to use for completions (default: openai)
+    -p, --provider <provider>       Provider to use for completions (default: openai, use "ollama" for a local model)
     -i, --image <path>              Path(s) to image files to include as input
     -v, --view <rollout>            Inspect a previously saved rollout instead of starting a session
     --history                       Browse previous sessions

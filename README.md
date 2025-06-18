@@ -120,6 +120,24 @@ export OPENAI_API_KEY="your-api-key-here"
 > export <provider>_BASE_URL="https://your-provider-api-base-url"
 > ```
 
+> ### Running a local model with Ollama
+>
+> [Ollama](https://ollama.ai) lets you host models locally. Start the server:
+>
+> ```bash
+> ollama serve        # or `ollama run mistral` to download and run a model
+> ```
+>
+> Invoke Codex with the Ollama provider:
+>
+> ```bash
+> codex --provider ollama "your prompt"
+> ```
+>
+> You can also set `model_provider = "ollama"` in `~/.codex/config.toml`. An API
+> key is not required when using Ollama locally so long as the server is running
+> at `http://localhost:11434/v1`.
+
 </details>
 <br />
 
@@ -449,6 +467,23 @@ Below is a comprehensive example of `config.json` with multiple custom providers
   }
 }
 ```
+
+For a local setup using Ollama:
+
+```json
+{
+  "model": "mistral",
+  "provider": "ollama",
+  "providers": {
+    "ollama": {
+      "name": "Ollama",
+      "baseURL": "http://localhost:11434/v1"
+    }
+  }
+}
+```
+
+No API key is needed when running Ollama locally.
 
 ### Custom instructions
 

@@ -31,6 +31,14 @@ model = "mistral"
 model_provider = "ollama"
 ```
 
+Make sure the Ollama server is running:
+
+```bash
+ollama serve        # or `ollama run mistral`
+```
+
+No API key is required when using a local Ollama instance.
+
 because the following definition for `ollama` is included in Codex:
 
 ```toml

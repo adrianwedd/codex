@@ -18,7 +18,7 @@ Add the `langchain` provider to your `~/.codex/config.json` if it is not already
 }
 ```
 
-Set the following environment variables (in `.env` or `~/.codex.env`) to enable tracing:
+Set the following environment variables (in `.env` or `~/.codex.env`) to enable tracing. With these set, every OpenAI API call can be captured by LangSmith:
 
 ```bash
 export LANGCHAIN_API_KEY="your-langsmith-key"
@@ -28,4 +28,8 @@ export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 
 ## Example scripts
 
-See [codex-cli/examples/langchain](../codex-cli/examples/langchain) for small Python examples that use LangChain. When the variables above are set, interactions will appear in your LangSmith dashboard.
+See [codex-cli/examples/langchain](../codex-cli/examples/langchain) for small Python examples that use LangChain. When the variables above are set, interactions will appear in your LangSmith dashboard. For instance, to run the RAG demo:
+
+```bash
+python codex-cli/examples/langchain/rag_pipeline.py docs "What is codex?"
+```

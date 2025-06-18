@@ -19,6 +19,8 @@ import {
   OPENAI_PROJECT,
   getBaseUrl,
   AZURE_OPENAI_API_VERSION,
+  LANGCHAIN_TRACING_V2,
+  LANGCHAIN_ENDPOINT,
 } from "../config.js";
 import { log } from "../logger/log.js";
 import { parseToolCallArguments } from "../parsers.js";
@@ -355,10 +357,10 @@ export class AgentLoop {
     setSessionId(this.sessionId);
     setCurrentModel(this.model);
 
-    if (
-      process.env["LANGCHAIN_TRACING_V2"] === "true" ||
-      process.env["LANGSMITH_TRACING_V2"] === "true"
-    ) {
+    if (LANGCHAIN_TRACING_V2 === "true" || process.env["LANGSMITH_TRACING_V2"] === "true") {
+      if (LANGCHAIN_ENDPOINT && !process.env["LANGCHAIN_ENDPOINT"]) {
+        process.env["LANGCHAIN_ENDPOINT"] = LANGCHAIN_ENDPOINT;
+      }
       try {
         // Wrap OpenAI client for LangSmith tracing
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

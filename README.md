@@ -23,6 +23,7 @@
 - [Non-interactive / CI mode](#non-interactive--ci-mode)
 - [Tracing / verbose logging](#tracing--verbose-logging)
 - [LangChain & LangSmith](docs/langsmith.md)
+- [Ollama + LangSmith example](docs/ollama-langsmith.md)
 - [Recipes](#recipes)
 - [Installation](#installation)
 - [Configuration guide](#configuration-guide)

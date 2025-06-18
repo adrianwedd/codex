@@ -32,10 +32,12 @@ import {
 import { applyPatchToolInstructions } from "./apply-patch.js";
 import { handleExecCommand } from "./handle-exec-command.js";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import { wrapOpenAI } from "langsmith/wrappers/openai";
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import OpenAI, { APIConnectionTimeoutError, AzureOpenAI } from "openai";
 import os from "os";
+
 
 // Wait time before retrying after rate limit errors (ms).
 const RATE_LIMIT_RETRY_WAIT_MS = parseInt(
@@ -352,6 +354,19 @@ export class AgentLoop {
 
     setSessionId(this.sessionId);
     setCurrentModel(this.model);
+
+    if (
+      process.env["LANGCHAIN_TRACING_V2"] === "true" ||
+      process.env["LANGSMITH_TRACING_V2"] === "true"
+    ) {
+      try {
+        // Wrap OpenAI client for LangSmith tracing
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this.oai = wrapOpenAI(this.oai as any);
+      } catch (err) {
+        log(`Failed to enable LangSmith tracing: ${String(err)}`);
+      }
+    }
 
     this.hardAbort = new AbortController();
 

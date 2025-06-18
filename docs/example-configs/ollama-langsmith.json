@@ -1,0 +1,10 @@
+{
+  "model": "mistral",
+  "provider": "ollama",
+  "providers": {
+    "ollama": {
+      "name": "Ollama",
+      "baseURL": "http://localhost:11434/v1"
+    }
+  }
+}

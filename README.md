@@ -523,7 +523,7 @@ export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 
 # Similarly for other providers
 ```
-For more details on using LangChain and LangSmith with Codex CLI see
+For more details on using LangChain and LangSmith with Codex CLI and to try the example scripts see
 [docs/langsmith.md](docs/langsmith.md).
 
 ---

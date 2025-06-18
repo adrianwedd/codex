@@ -39,3 +39,4 @@ scripts/launch_ollama_langsmith.sh "your prompt here"
 ```
 
 The script verifies the Ollama server, loads the environment variables from `docs/example-configs/ollama-langsmith.env` if present, and then launches the Codex CLI using the example configuration.
+

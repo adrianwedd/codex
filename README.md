@@ -22,6 +22,7 @@
 - [Memory & project docs](#memory--project-docs)
 - [Non-interactive / CI mode](#non-interactive--ci-mode)
 - [Tracing / verbose logging](#tracing--verbose-logging)
+- [LangChain & LangSmith](docs/langsmith.md)
 - [Recipes](#recipes)
 - [Installation](#installation)
 - [Configuration guide](#configuration-guide)
@@ -517,9 +518,13 @@ export OPENROUTER_API_KEY="your-openrouter-key-here"
 
 # LangChain
 export LANGCHAIN_API_KEY="your-langchain-key-here"
+export LANGCHAIN_TRACING_V2=true
+export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 
 # Similarly for other providers
 ```
+For more details on using LangChain and LangSmith with Codex CLI see
+[docs/langsmith.md](docs/langsmith.md).
 
 ---
 

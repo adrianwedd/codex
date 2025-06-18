@@ -143,6 +143,20 @@ export OPENAI_API_KEY="your-api-key-here"
 </details>
 <br />
 
+### Browser automation (experimental)
+
+```bash
+pip install browser-use
+playwright install chromium --with-deps --no-shell
+```
+
+Run a browser task:
+
+```bash
+codex --browse "open https://example.com and summarize the page"
+```
+
+
 Run interactively:
 
 ```shell
@@ -241,6 +255,7 @@ The hardening mechanism Codex uses depends on your OS:
 | `codex "..."`                        | Initial prompt for interactive REPL | `codex "fix lint errors"`            |
 | `codex -q "..."`                     | Non-interactive "quiet mode"        | `codex -q --json "explain utils.ts"` |
 | `codex completion <bash\|zsh\|fish>` | Print shell completion script       | `codex completion bash`              |
+| `codex --browse "..."`               | Run a browser-use task                | `codex --browse "open https://example.com"` |
 
 Key flags: `--model/-m`, `--approval-mode/-a`, `--quiet/-q`, and `--notify`.
 

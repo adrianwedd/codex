@@ -31,6 +31,7 @@ import SessionsOverlay from "./components/sessions-overlay.js";
 import { AgentLoop } from "./utils/agent/agent-loop";
 import { ReviewDecision } from "./utils/agent/review";
 import { AutoApprovalMode } from "./utils/auto-approval-mode";
+import { runBrowserTask } from "./utils/browser-task.js";
 import { checkForUpdates } from "./utils/check-updates";
 import {
   loadConfig,
@@ -193,6 +194,10 @@ const cli = meow(
         choices: ["low", "medium", "high"],
         default: "high",
       },
+      browse: {
+        type: "string",
+        description: "Run a browser-use task and exit",
+      },
       // Notification
       notify: {
         type: "boolean",
@@ -256,6 +261,12 @@ complete -c codex -a '(__fish_complete_path)' -d 'file path'`,
 // For --help, show help and exit.
 if (cli.flags.help) {
   cli.showHelp();
+}
+
+// For --browse, run a browser-use task and exit.
+if (cli.flags.browse) {
+  runBrowserTask(cli.flags.browse);
+  process.exit(0);
 }
 
 // For --config, open custom instructions file in editor and exit.
@@ -363,7 +374,7 @@ if (cli.flags.free) {
 }
 
 // Set of providers that don't require API keys
-const NO_API_KEY_REQUIRED = new Set(["ollama"]);
+const NO_API_KEY_REQUIRED = new Set(["ollama", "browser"]);
 
 // Skip API key validation for providers that don't require an API key
 if (!apiKey && !NO_API_KEY_REQUIRED.has(provider.toLowerCase())) {

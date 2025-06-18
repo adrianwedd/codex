@@ -52,4 +52,9 @@ export const providers: Record<
     baseURL: "https://conductor.arcee.ai/v1",
     envKey: "ARCEEAI_API_KEY",
   },
+  langchain: {
+    name: "LangChain",
+    baseURL: "http://localhost:8000",
+    envKey: "LANGCHAIN_API_KEY",
+  },
 };

@@ -1,0 +1,162 @@
+id: 1
+title: Clarify sandbox documentation
+category: Governance
+priority: P1
+effort: 2
+rationale: |
+  Referencing the Opportunity Scan in SELF_AUDIT, clearer documentation of environment constraints helps users avoid surprises and reduces support friction.
+description: |
+  - Add a dedicated section in project docs outlining sandbox limitations
+  - Provide examples of commands that may fail and suggested workarounds
+  - Mention version and network constraints explicitly
+acceptance_criteria:
+  - New documentation page exists and is referenced from README
+  - CI passes after documentation update
+dependencies: []
+---
+id: 2
+title: Automate recurring self-audits
+category: Enhancement
+priority: P2
+effort: 3
+rationale: |
+  Regular audits encourage continuous improvement as noted in SELF_AUDIT section 5. Automating them ensures issues surface promptly.
+description: |
+  - Create a scheduled workflow that generates an updated SELF_AUDIT.md
+  - Store the audit history for comparison across releases
+  - Notify maintainers when new audits are available
+acceptance_criteria:
+  - Workflow runs at defined intervals
+  - Generated audits are committed or archived
+  - Maintainers receive notification
+dependencies: [1]
+---
+id: 3
+title: Adjust tests for sandbox compatibility
+category: Remediation
+priority: P0
+effort: 5
+rationale: |
+  Current test failures stem from restricted process management. Aligning tests with sandbox behavior (SELF_AUDIT section 6) will restore confidence in automated checks.
+description: |
+  - Identify tests that assume unrestricted process control
+  - Introduce mocks or skips when necessary
+  - Document how to run full tests outside the sandbox
+acceptance_criteria:
+  - Test suite passes in the sandboxed environment
+  - Documentation explains remaining exclusions
+dependencies: []
+---
+id: 4
+title: Establish output quality metrics
+category: Research
+priority: P1
+effort: 3
+rationale: |
+  SELF_AUDIT highlights the need for metric-driven evaluation. Defining measurable quality indicators supports objective improvement efforts.
+description: |
+  - Research existing metrics for code-generation agents
+  - Select a small set of meaningful indicators (e.g., lint errors, test coverage)
+  - Prototype a reporting mechanism
+acceptance_criteria:
+  - Metrics are defined and documented
+  - Initial reports available for at least one release
+dependencies: []
+---
+id: 5
+title: Encourage community feedback
+category: Enhancement
+priority: P2
+effort: 2
+rationale: |
+  Direct input from users, as mentioned in the Opportunity Scan, reveals pain points that may not appear in automated tests.
+description: |
+  - Provide a template for issue submissions related to agent behavior
+  - Promote discussion channels for suggestions
+  - Review feedback regularly during retrospectives
+acceptance_criteria:
+  - Issue template merged
+  - Documented process for triaging feedback
+  - Evidence of periodic reviews
+dependencies: []
+---
+id: 6
+title: Review runtime version support
+category: Governance
+priority: P1
+effort: 2
+rationale: |
+  SELF_AUDIT notes a risk stemming from dependency on specific versions. A review ensures broader compatibility and smoother upgrades.
+description: |
+  - Inventory current runtime versions in use
+  - Define minimum and recommended versions
+  - Outline upgrade procedures
+acceptance_criteria:
+  - Version matrix documented in repository
+  - Upgrade guidelines available for maintainers
+dependencies: []
+---
+id: 7
+title: Explore ethical implications of agent decisions
+category: Research
+priority: P2
+effort: 3
+rationale: |
+  Addressing ethical considerations (SELF_AUDIT section 6) mitigates potential harm and fosters trust.
+description: |
+  - Investigate ethical guidelines relevant to autonomous agents
+  - Summarize key concerns and mitigation strategies
+  - Present findings to maintainers for discussion
+acceptance_criteria:
+  - Ethics summary document created
+  - Action items proposed based on research
+dependencies: []
+---
+id: 8
+title: Implement dependency update monitoring
+category: Enhancement
+priority: P2
+effort: 3
+rationale: |
+  Staying informed about upstream changes reduces unexpected breakage and aligns with best practices highlighted under External Inspiration.
+description: |
+  - Configure automated checks for new package releases
+  - Notify maintainers when critical updates are available
+  - Integrate update status into self-audit workflow
+acceptance_criteria:
+  - Monitoring tool active and producing logs
+  - Update notifications verified
+  - Audit references dependency status
+dependencies: []
+---
+id: 9
+title: Create fallback plan for platform-specific tests
+category: Remediation
+priority: P1
+effort: 2
+rationale: |
+  Some tests may only run on certain platforms. Providing a fallback or skip strategy keeps pipelines green while signaling coverage gaps.
+description: |
+  - Tag platform-specific tests with clear metadata
+  - Provide instructions for running them in full-feature environments
+  - Ensure CI marks them as skipped rather than failed when unsupported
+acceptance_criteria:
+  - CI output shows skipped tests with rationale
+  - Documentation describes how to run them manually
+dependencies: [3]
+---
+id: 10
+title: Track audit-driven improvements over time
+category: Research
+priority: P2
+effort: 2
+rationale: |
+  Capturing the effect of completed tasks links back to the Reflection Summary, showing tangible progress.
+description: |
+  - Maintain a changelog of implemented audit recommendations
+  - Periodically evaluate whether metrics improve
+  - Share trends with the community
+acceptance_criteria:
+  - Changelog of improvement tasks exists
+  - Metrics demonstrate at least one measurable gain after implementation
+dependencies: [2,4]

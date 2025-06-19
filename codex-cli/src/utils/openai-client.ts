@@ -8,9 +8,9 @@ import {
   OPENAI_ORGANIZATION,
   OPENAI_PROJECT,
 } from "./config.js";
-import OpenAI, { AzureOpenAI } from "openai";
-import { wrapOpenAI } from "langsmith/wrappers/openai";
 import { log } from "./logger/log.js";
+import { wrapOpenAI } from "langsmith/wrappers/openai";
+import OpenAI, { AzureOpenAI } from "openai";
 
 type OpenAIClientConfig = {
   provider: string;
